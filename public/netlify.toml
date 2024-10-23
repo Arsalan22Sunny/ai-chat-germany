@@ -1,0 +1,9 @@
+[build]
+  publish = "dist" # This is the default output directory for Vite
+  command = "vite build" # Replace with your build command if different
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true

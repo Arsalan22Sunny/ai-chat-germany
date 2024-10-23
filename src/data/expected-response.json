@@ -1,0 +1,46 @@
+{
+    "chat_instance": {
+        "id": "e4d9eaf7962a7af755587f44f60c8bdb",
+        "metadata": {
+            "timestamp": "2024-09-12T14:32:00Z",
+            "model_version": "v4.5"
+        },
+        "session": {
+            "id": "session456",
+            "user": {
+                "id": "30a697a90ab53f00f0894db82241d40c",
+                "username": "john_doe",
+                "email": "john@example.com"
+            },
+            "start_time": "2024-09-12T14:30:00Z",
+            "end_time": "2024-09-12T14:35:00Z"
+        },
+        "messages": [
+            {
+                "id": "6ac9683d43685052ac81910f77beb559",
+                "sender": "user",
+                "timestamp": "2024-09-12T14:31:00Z",
+                "text": "What is photosynthesis?",
+                "context": [
+                    "Previous message about plant biology."
+                ]
+            },
+            {
+                "id": "617f3ff04375758c8ea0796616a5ce22",
+                "sender": "ai",
+                "timestamp": "2024-09-12T14:32:00Z",
+                "text": "Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll. The general equation is 6CO2 + 6H2O + light energy → C6H12O6 + 6O2.",
+                "response_details": {
+                    "response_length": 178,
+                    "tokens_used": 34,
+                    "confidence_score": 0.95,
+                    "response_time_ms": 150
+                }
+            }
+        ],
+        "summary": {
+            "total_messages": 2,
+            "average_response_time_ms": 150
+        }
+    }
+}

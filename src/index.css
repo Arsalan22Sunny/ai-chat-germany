@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+}
+
+.modern-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modern-scrollbar::-webkit-scrollbar-thumb {
+    background: #d9d9d9;
+    border-radius: 1rem;
+}
+
+.modern-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.highlight {
+    background-color: rgba(255, 255, 0, 0.4);
+}
+
+.animate-bounce {
+    animation: bounce 1s ease-in-out;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0) translateX(0) scale();
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-8px) translateX(10px) scale(0.8);
+        opacity: 0.5;
+    }
+
+    95% {
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0) translateX(0) scale();
+        opacity: 1;
+    }
+}
+
+.swiper {
+    width: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    transform: translateY(0.5rem);
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

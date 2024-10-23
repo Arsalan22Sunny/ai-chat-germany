@@ -1,0 +1,235 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "LLM",
+    "collectionId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+    "dateExported": "2024-09-18T10:44:49.739Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "43e60dcb-6ef5-4487-bf72-afe3891232c8",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Query",
+            "url": "http://217.160.190.143:8050/query",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-09-08T11:07:12.409Z",
+            "modified": "2024-09-11T20:51:25.631Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlbGxlY2hvZW50ZXJwcmlzZXNAZ21haWwuY29tIiwiZXhwIjoxNzI2MDk4NjAwfQ.LF52ICXcMyVoY-LBiSnUQtLLRe3ViEmFfGdjg95WcNA"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"question\": \"Hi\",\n  \"chat_history\": []\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "e4cd127d-7531-4997-986f-87cf97a0720a",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "SignUp",
+            "url": "http://217.160.190.143:8050/signup",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-09-08T11:11:53.662Z",
+            "modified": "2024-09-08T11:12:20.844Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"sanaenterprises925@gmail.com\",\n  \"password\": \"arsooo\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "99c06d82-596a-4cf9-bce0-dc86199302c5",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "SignIn",
+            "url": "http://217.160.190.143:8050/token",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-09-08T11:12:58.781Z",
+            "modified": "2024-09-08T11:17:49.577Z",
+            "headers": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "username",
+                        "value": "arsalansunny.kha@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "value": "arsooo"
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "11029aed-79eb-4da8-8c91-034b38237876",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Verify Email",
+            "url": "http://217.160.190.143:8050/verify-email-status/arsalansunny.kha@gmail.com",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-09-08T11:22:35.110Z",
+            "modified": "2024-09-08T11:23:18.909Z",
+            "headers": []
+        },
+        {
+            "_id": "8d75b83c-e020-4e7f-892f-dab44be05faa",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Extract PDF",
+            "url": "http://217.160.190.143:8050/pdf_content/BGH, Urteil vom 11.06.2021 - V ZR 234_19.pdf",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-09-08T11:24:24.154Z",
+            "modified": "2024-09-08T11:25:56.763Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcnNhbGFuc3Vubnkua2hhQGdtYWlsLmNvbSIsImV4cCI6MTcyNTgwMjA0OX0.nGg8WJHXWaNEX1ic4OBkmgnENlhf5-JHhP2wKjbi67c"
+                }
+            ]
+        },
+        {
+            "_id": "93dfa2f5-d49a-49c0-a1f8-357166b20370",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Save Chat",
+            "url": "http://217.160.190.143:8050/save-chat",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2024-09-08T11:28:58.167Z",
+            "modified": "2024-09-08T11:30:09.496Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"arsalansunny.kha@gmail.com\",\n  \"content\": \"Hi\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "abf368a2-2e7a-45fd-92a8-122ad217e331",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Change Password",
+            "url": "http://217.160.190.143:8050/change-password",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-09-08T11:43:53.819Z",
+            "modified": "2024-09-08T11:45:46.479Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcnNhbGFuc3Vubnkua2hhQGdtYWlsLmNvbSIsImV4cCI6MTcyNTgwMjA0OX0.nGg8WJHXWaNEX1ic4OBkmgnENlhf5-JHhP2wKjbi67c"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"current_password\": \"sunny\",\n  \"new_password\": \"arsooo\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "7e0d3d95-3021-49d1-b45d-cfa105274c1a",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Block User",
+            "url": "http://217.160.190.143:8050/api/block-user",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2024-09-08T11:54:21.137Z",
+            "modified": "2024-09-08T11:55:30.751Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"arsalansunny.kha@gmail.com\",\n  \"blockStatus\": \"active\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "b5951555-7381-47e4-9a18-a8e75dcbee5f",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Create Chat",
+            "url": "http://localhost:8050/api/create-new-chat",
+            "method": "POST",
+            "sortNum": 130000,
+            "created": "2024-09-15T19:07:12.129Z",
+            "modified": "2024-09-15T19:08:25.740Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcnNhbGFuc3Vubnkua2hhQGdtYWlsLmNvbSIsImV4cCI6MTcyNjQzNzk2MX0.CWpMuHvBB52RoFr2ciITNf34HeGkcMC_ggdsxFtNHhQ"
+                }
+            ]
+        },
+        {
+            "_id": "a4a325e8-b7a6-4f7e-9aef-f96b6fc3b4c7",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Forgot Password",
+            "url": "https://back.sanbjur.de/api/forgot",
+            "method": "POST",
+            "sortNum": 140000,
+            "created": "2024-09-17T21:58:47.541Z",
+            "modified": "2024-09-18T10:15:40.439Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlbGxlY2hvZW50ZXJwcmlzZXNAZ21haWwuY29tIiwiZXhwIjoxNzI2NjIxMDU3fQ.PYN_HM08hFPVKs7QZiuny5MIJOIrCDVk-9b6L5kHGxE",
+                    "isDisabled": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"arsalansunny.kha@gmail.com\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "d4347eb6-36c4-4222-919e-d8cf861b506f",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Reset Password",
+            "url": "https://back.sanbjur.de/api/reset",
+            "method": "POST",
+            "sortNum": 150000,
+            "created": "2024-09-18T07:33:27.363Z",
+            "modified": "2024-09-18T10:17:05.849Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"token\": \"7zvrMantlI0c5M8yIZbyuppzm0NMjQUMfrGYf8F16MQ\",\n  \"new_password\": \"sunny\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "eaf760fe-e550-4acf-a0dd-6bce06a857be",
+            "colId": "9e511eee-21f9-4aeb-894a-e10d768a8a02",
+            "containerId": "",
+            "name": "Verify Reset Token",
+            "url": "https://back.sanbjur.de/api/verify-token",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2024-09-18T08:11:29.426Z",
+            "modified": "2024-09-18T10:44:00.375Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"token\": \"7zvrMantlI0c5M8yIZbyuppzm0NMjQUMfrGYf8F16MQ\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "KASiiu_2tDGtchD0u-WHDBe0WIFgt1TjMEIZpij0Dc_i3JhzGguA0_sXZZRb5KaksBK4sgJa1L7ll_ax9sAqbw"
+}
