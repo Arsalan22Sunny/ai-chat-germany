@@ -4,10 +4,13 @@ import { useContext, useState } from "react";
 import IconBookmark from "../../../../icon/IconBookmark";
 import cn from "../../../../../utils/cn";
 import FetchContext from "../../../../../context/fetch";
+import { ArchiveAdd } from "iconsax-react";
 
 const SaveChat = ({ content, ...rest }) => {
   const [saved, setSaved] = useState(false);
   const { requests } = useContext(FetchContext);
+  const [bookmarked, setBookmarked] = useState([]);
+
 
   async function saveChat({ content }) {
     const response = await requests(`save-chat`, {
@@ -30,6 +33,7 @@ const SaveChat = ({ content, ...rest }) => {
     try {
       const response = await saveChat(content);
       if (response.message) {
+        console.log(content,"content")
         setSaved(true);
         const timeout = setTimeout(() => {
           setSaved(false);
@@ -51,8 +55,8 @@ const SaveChat = ({ content, ...rest }) => {
       )}
       {...rest}
     >
-      <IconBookmark className={"w-full h-full"} />
-      {saved ? <small className="px-2">Saved</small> : ""}
+      {saved ? <ArchiveAdd size="24" color="#192245" variant="Bold"/> :<IconBookmark className={"w-full h-full"} />}
+      {saved ? <small className="px-2">Gespeichert</small> : ""}
     </button>
   );
 };

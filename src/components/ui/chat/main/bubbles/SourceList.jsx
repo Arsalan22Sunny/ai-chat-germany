@@ -38,7 +38,6 @@ const Source = ({ source, onClick }) => {
           <div style={style}>
             {source.content?.filename.replace(".pdf", "")}
           </div>
-          <div>.bendjur</div>
         </button>
         <SaveChat content={source} />
       </div>

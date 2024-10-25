@@ -43,7 +43,7 @@ const Menu = () => {
       protected: false,
     },
     {
-      name: "onto erstellen",
+      name: "Konto erstellen",
       path: "/auth/konto-erstellen",
       protected: false,
     },

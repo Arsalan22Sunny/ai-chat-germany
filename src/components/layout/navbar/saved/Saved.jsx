@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
-import { Paperclip } from "iconsax-react";
+import { Paperclip, ArchiveAdd } from "iconsax-react";
 import { Link } from "react-router-dom";
 import FetchContext from "../../../../context/fetch";
 import CloserButton from "../../../common/CloseButton";
 import Loading from "../../../common/Loading";
+import IconBookmark from "../../../icon/IconBookmark";
+
 import { createPortal } from "react-dom";
 
 const PDFObject = {
@@ -155,7 +157,7 @@ const Saved = () => {
         className="size-9 flex justify-center items-center hover:bg-main/10 rounded-lg"
         title={"Gespeicherte \n Entscheidungen"}
       >
-        <Paperclip className="size-6" />
+        <ArchiveAdd size="24" color="#192245" variant="Bold"/>
       </button>
       {state
         ? createPortal(<Dropdowns toggle={toggle} />, document.body)
