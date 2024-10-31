@@ -88,13 +88,10 @@
 }
 
 .source{
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin: 5px;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
-}
-
-.source li.active {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
+       padding: 10px;
+       border: 1px solid #ddd;
+       margin: 5px;
+       cursor: pointer;
+       transition: box-shadow 0.3s ease;
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+     }

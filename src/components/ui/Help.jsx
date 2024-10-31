@@ -52,15 +52,3 @@ const Help = () => {
 export default Help;
 
 
-// li {
-//   padding: 10px;
-//   border: 1px solid #ddd;
-//   margin: 5px;
-//   cursor: pointer;
-//   transition: box-shadow 0.3s ease;
-// }
-
-// /* Box shadow style when active */
-// li.active {
-//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-// }

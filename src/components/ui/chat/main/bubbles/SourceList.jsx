@@ -1,15 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState} from "react";
 import PropTypes from "prop-types";
 import cn from "../../../../../utils/cn";
 import ViewerContext from "../../../../../context/viewer";
 import SaveChat from "./SaveChat";
 
-const Source = ({ source, onClick, handleSavedDocuments }) => {
+const Source = ({ source, onClick, handleSavedDocuments}) => {
   const [visited, setVisited] = useState(false);
-  const [clicked, setClicked] = useState(false)
-  
+  const { PDF} = useContext(ViewerContext);
+
+
+  useContext
   if (!source.content?.filename) return;
 
   const style = {
@@ -22,7 +24,7 @@ const Source = ({ source, onClick, handleSavedDocuments }) => {
   };
 
   return (
-    <li className={"space-y-2 pt-3"} onClick={()=>setClicked(true)}>
+    <li className={PDF?.document_id === source.content.document_id?"source space-y-2 pt-3":"space-y-2 pt-3"} onClick={()=>{}}>
       <div className="flex justify-between items-center gap-4">
         <button
           type="button"
