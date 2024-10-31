@@ -12,6 +12,7 @@ const ChatGroup = ({
    * @variables (Array) messages
    */
   messageGroup = [], // from reducer store
+  handleSavedDocuments
 }) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -44,6 +45,7 @@ const ChatGroup = ({
         toggle={() => {
           setExpanded(!expanded);
         }}
+        handleSavedDocuments={handleSavedDocuments}
       />
     </>
   );
@@ -51,6 +53,8 @@ const ChatGroup = ({
 
 const ChatGroupV2 = ({
   messageGroup = {}, // from reducer store
+  handleSavedDocuments,
+  
 }) => {
   const [expanded, setExpanded] = useState(false);
   const { question, sources, stream } = messageGroup;
@@ -66,6 +70,7 @@ const ChatGroupV2 = ({
         toggle={() => {
           setExpanded(!expanded);
         }}
+        handleSavedDocuments={handleSavedDocuments}
       />
     </>
   );
@@ -86,12 +91,26 @@ const ChatMain = () => {
   }, [
     state, // on state change it will start scrolling to bottom
   ]);
+
+
+  const [savedDocuments,setSavedDocuments]=useState([])
+  const handleSavedDocuments=(document_id)=>{
+    if(!savedDocuments.includes(document_id)){
+    console.log(document_id,"docid")
+    setSavedDocuments([...savedDocuments,document_id])
+    }
+}
+
+useEffect(()=>{
+  localStorage.setItem('documentIds', JSON.stringify(savedDocuments));
+},[savedDocuments])
+
   return (
     <div className="h-full w-full flex flex-col gap-6 px-4 overflow-y-auto modern-scrollbar pt-4 pb-6 lg:pl-[5rem]">
       <DefaultMessage />
       <ArrayValidator list={state?.messages}>
         {state.messages_v2.map((group, i) => {
-          return <ChatGroupV2 key={i} messageGroup={group} />;
+          return <ChatGroupV2 key={i} messageGroup={group} handleSavedDocuments={handleSavedDocuments}/>;
         })}
       </ArrayValidator>
       <div ref={scrollIntoViewRef}></div>

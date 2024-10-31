@@ -56,7 +56,7 @@ const FAQs = () => {
   return (
     <div className="px-4 h-full flex flex-col py-12 lg:py-24">
       <div className="max-w-screen-sm mx-auto w-full">
-        <h1 className="text-3xl font-bold mb-4 capitalize">regelungen</h1>
+        <h1 className="text-3xl font-bold mb-4 capitalize">Informationen</h1>
         <div className="w-full divide-y">
           {faqItems.map((item, index) => (
             <Accordion

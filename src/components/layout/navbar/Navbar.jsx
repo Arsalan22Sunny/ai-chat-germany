@@ -5,6 +5,10 @@ import Menu from "./Menu";
 import Saved from "./saved/Saved";
 import { AuthContext } from "../../../context/auth";
 import { useContext } from "react";
+import IconBookmark from "../../icon/IconBookmark";
+import { Setting2 } from "iconsax-react";
+import Settings from "../navbar/settings/settings"
+
 
 const Navbar = ({ className = "" }) => {
   const { user, loading } = useContext(AuthContext);
@@ -23,7 +27,13 @@ const Navbar = ({ className = "" }) => {
       </div>
       <div className="flex-grow"></div>
       <div className={cn("flex-shrink-0", "flex items-center gap-2")}>
-        {user && <Saved />}
+        {user && 
+        <>
+          <Saved />
+          <Settings/>
+        </>
+
+        }
         <Menu />
       </div>
     </div>

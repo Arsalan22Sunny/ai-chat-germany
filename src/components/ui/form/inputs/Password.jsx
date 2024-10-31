@@ -46,26 +46,22 @@ const InputPassword = ({ ...props }) => {
   return (
     <div className="w-full relative">
       <input
-        // type={show ? "text" : "password"}
-        type="password"
+        type={show ? "text" : "password"} 
         name="password"
         id="password"
-        placeholder="Passwort"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm+ rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-4 py-3"
+        placeholder="Passwort" 
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-4 py-3"
         required
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        {...props}
+        {...props} 
       />
-      {/* <button
+      <button
         type="button"
-        onClick={() => {
-          setShow((prev) => !prev);
-        }}
-        className="size-5 absolute right-4 top-1/2 -translate-y-1/2"
-      >
-        {show ? <EyeClose /> : <EyeOpen />}
-      </button> */}
+        onClick={() => setShow(prev => !prev)}
+        className="size-5 absolute right-4 top-1/2 -translate-y-1/2">
+        {show ? <EyeClose /> : <EyeOpen />} 
+      </button>
     </div>
   );
 };

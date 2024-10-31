@@ -7,20 +7,27 @@ import { arrayValidator } from "../../../../../utils/validator";
 import { useContext, useEffect, useState } from "react";
 import FetchContext from "../../../../../context/fetch";
 import { ContextChat } from "../../../../../context/chat";
+import { Tooltip } from 'antd';
 
 const StickyButton = ({ toggle }) => {
+  const text= "Zuklappen"
   return (
     <div className="flex items-center shrink-0 sticky left-0 top-0 py-4">
-      <button
+      <Tooltip 
+        placement="bottomLeft" 
+        title={<span className="text-black">{text}</span>}  
+        color="white" 
+        >
+        <button
         type="button"
         onClick={toggle}
         className={cn(
           "size-8 flex justify-center items-center text-main bg-slate-200 rounded-r-2xl"
         )}
-        title="Collapse"
-      >
-        <Minus className="size-5" />
-      </button>
+        >
+          <Minus className="size-5" />        
+       </button>
+      </Tooltip>
     </div>
   );
 };
@@ -50,7 +57,7 @@ const Loading = () => {
   );
 };
 
-const BubbleAi = ({ className, question, expanded, toggle }) => {
+const BubbleAi = ({ className, question, expanded, toggle, handleSavedDocuments }) => {
   const { requests } = useContext(FetchContext);
   const { dispatch } = useContext(ContextChat);
   const [stream, setStream] = useState("");
@@ -74,7 +81,6 @@ const BubbleAi = ({ className, question, expanded, toggle }) => {
         }
 
         const sourcesList = await response.json();
-        console.log("Sources:", sourcesList);
         setSources(sourcesList);
       } catch (error) {
         console.error("Error fetching sources:", error);
@@ -134,7 +140,7 @@ const BubbleAi = ({ className, question, expanded, toggle }) => {
           <p>{stream}</p>
           {expanded && (
             <ul className="divide-y divide-gray-300 space-y-4">
-              <SourceList sources={arrayValidator(sources)} />
+              <SourceList sources={arrayValidator(sources)} handleSavedDocuments={handleSavedDocuments}/>
             </ul>
           )}
         </main>

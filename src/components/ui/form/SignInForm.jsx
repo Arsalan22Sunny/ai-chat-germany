@@ -31,7 +31,14 @@ const SignInForm = () => {
       assignUser({ accessToken });
       navigate("/");
     } catch (error) {
+      const errorMessage = "Incorrect username or password";
+      const errorDetail = error.message || error.detail;
+
+      if(errorDetail.includes(errorMessage)){
+        toast.error("Deine E-Mail-Adresse oder dein Passwort ist nicht korrekt.");
+      }else{
       toast.error(error.message || error.detail);
+      }
     }
   }
 

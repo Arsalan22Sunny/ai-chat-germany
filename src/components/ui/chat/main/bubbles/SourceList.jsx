@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import cn from "../../../../../utils/cn";
 import ViewerContext from "../../../../../context/viewer";
 import SaveChat from "./SaveChat";
 
-const Source = ({ source, onClick }) => {
+const Source = ({ source, onClick, handleSavedDocuments }) => {
   const [visited, setVisited] = useState(false);
-
+  const [clicked, setClicked] = useState(false)
+  
   if (!source.content?.filename) return;
 
   const style = {
@@ -21,7 +22,7 @@ const Source = ({ source, onClick }) => {
   };
 
   return (
-    <li className="space-y-2 pt-3">
+    <li className={"space-y-2 pt-3"} onClick={()=>setClicked(true)}>
       <div className="flex justify-between items-center gap-4">
         <button
           type="button"
@@ -39,7 +40,7 @@ const Source = ({ source, onClick }) => {
             {source.content?.filename.replace(".pdf", "")}
           </div>
         </button>
-        <SaveChat content={source} />
+        <SaveChat content={source} handleSavedDocuments={handleSavedDocuments}/>
       </div>
       <div
         className="bg-white px-2 lg:px-3 py-1 lg:py-2 overflow-hidden"
@@ -58,7 +59,7 @@ Source.propTypes = {
   onClick: PropTypes.func,
 };
 
-const SourceList = ({ sources }) => {
+const SourceList = ({ sources, handleSavedDocuments}) => {
   if (!Array.isArray(sources)) return;
   const { PDF, viewPDF } = useContext(ViewerContext);
 
@@ -71,6 +72,7 @@ const SourceList = ({ sources }) => {
         onClick={() => {
           viewPDF(source.content);
         }}
+        handleSavedDocuments={handleSavedDocuments}
       />
     );
   });

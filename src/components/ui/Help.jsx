@@ -6,15 +6,27 @@ const Help = () => {
   const nav_list = [
     {
       name: "Kontakt",
-      path: "/regelungen",
+      path: "/informationen",
     },
     {
       name: "Impressum",
-      path: "/regelungen",
+      path: "/informationen",
     },
     {
       name: "Datenschutz",
-      path: "/regelungen",
+      path: "/informationen",
+    },
+    {
+      name: "AGB",
+      path: "/informationen",
+    },
+    {
+      name: "Haftungsausschluss",
+      path: "/informationen",
+    },
+    {
+      name: "FAQ",
+      path: "/informationen",
     },
   ];
 
@@ -38,3 +50,17 @@ const Help = () => {
 };
 
 export default Help;
+
+
+// li {
+//   padding: 10px;
+//   border: 1px solid #ddd;
+//   margin: 5px;
+//   cursor: pointer;
+//   transition: box-shadow 0.3s ease;
+// }
+
+// /* Box shadow style when active */
+// li.active {
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+// }

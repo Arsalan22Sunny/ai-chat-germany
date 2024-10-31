@@ -1,7 +1,7 @@
 import cn from "../../utils/cn";
 import PropTypes from "prop-types";
 
-const IconBookmark = ({ className }) => (
+const IconBookmark = ({ className, color, stroke }) => (
   // <svg
   //   className={cn(className || "size-5")}
   //   viewBox="0 0 24 32"
@@ -25,7 +25,8 @@ const IconBookmark = ({ className }) => (
       fillRule="evenodd"
       clipRule="evenodd"
       d="M1 31.4813V4C1 2.34375 2.34375 1 4 1H22C23.6562 1 25 2.34375 25 4V31.4813C25 32.3188 24.3188 33 23.4813 33C23.1688 33 22.8625 32.9062 22.6063 32.725L13 26L3.39375 32.725C3.1375 32.9062 2.83125 33 2.51875 33C1.68125 33 1 32.3188 1 31.4813Z"
-      stroke="black"
+      fill={color? color :"none"}
+      stroke={stroke? stroke : "black"}
       strokeWidth={2}
     />
   </svg>

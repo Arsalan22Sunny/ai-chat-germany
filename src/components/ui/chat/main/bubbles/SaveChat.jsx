@@ -1,16 +1,19 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import IconBookmark from "../../../../icon/IconBookmark";
 import cn from "../../../../../utils/cn";
 import FetchContext from "../../../../../context/fetch";
 import { ArchiveAdd } from "iconsax-react";
 
-const SaveChat = ({ content, ...rest }) => {
+const SaveChat = ({ content, handleSavedDocuments, ...rest }) => {
   const [saved, setSaved] = useState(false);
   const { requests } = useContext(FetchContext);
-  const [bookmarked, setBookmarked] = useState([]);
+  const [bookmarked, setBookmarked] = useState(false);
 
+  const savedDocuments = localStorage.getItem('documentIds')
+
+  const documentId = content.content.document_id
 
   async function saveChat({ content }) {
     const response = await requests(`save-chat`, {
@@ -33,8 +36,9 @@ const SaveChat = ({ content, ...rest }) => {
     try {
       const response = await saveChat(content);
       if (response.message) {
-        console.log(content,"content")
         setSaved(true);
+        setBookmarked(true)
+        handleSavedDocuments(content.content.document_id)
         const timeout = setTimeout(() => {
           setSaved(false);
           clearTimeout(timeout);
@@ -44,7 +48,7 @@ const SaveChat = ({ content, ...rest }) => {
       console.error(error);
     }
   }
-
+  
   return (
     <button
       type="button"
@@ -55,7 +59,7 @@ const SaveChat = ({ content, ...rest }) => {
       )}
       {...rest}
     >
-      {saved ? <ArchiveAdd size="24" color="#192245" variant="Bold"/> :<IconBookmark className={"w-full h-full"} />}
+      {savedDocuments.includes(documentId) || bookmarked ? <ArchiveAdd size="24" color="#192245" variant="Bold"/> :<IconBookmark className={"w-full h-full"} />}
       {saved ? <small className="px-2">Gespeichert</small> : ""}
     </button>
   );

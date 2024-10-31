@@ -58,7 +58,7 @@ const routes = [
         element: <Reset />,
       },
       {
-        path: "regelungen",
+        path: "informationen",
         element: <FAQs />,
       },
     ],
