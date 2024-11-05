@@ -1,40 +1,90 @@
+import { useState } from "react";
 import IconBookmark from "../../../icon/IconBookmark";
 import { Setting2 } from "iconsax-react";
-import { Dropdown } from 'antd';
-
+import { Dropdown, Menu, Radio, Button, Divider } from 'antd';
 
 const Settings = () => {
 
-    const items = [
-        {
-          key: '1',
-          label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-              1st menu item
-            </a>
-          ),
-        },
-        {
-          key: '2',
-          label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-              2nd menu item
-            </a>
-          ),
-        },
-        {
-          key: '3',
-          label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-              3rd menu item
-            </a>
-          ),
-        },
-      ];
+  const currentYear = new Date().getFullYear();
+  const yearsRange = Array.from({ length: currentYear - 1980 + 1 }, (_, i) => currentYear - i);
+  const years = ["All", ...yearsRange, "older"];
+  const [reference, setReference] = useState(10)
+  const [selectedYear, setSelectedYear] = useState('All')
+  const [selectedCourt, setSelectedCourt] = useState('All')
+
+  const courtTypes = [
+      ["AG", "LG", "OLG", "BGH"],
+      ["ArbG", "LAG", "BAG"],
+      ["VG", "OVG", "VGH", "BVerwG"],
+      ["SG", "LSG", "BSG"],
+      ["FG", "BFH"],
+      ["EuGH", "BVerfG", "VerfGH", "StGH", "VerfG"],
+      ["BPatG"],
+      ["BDG"]
+    ];
+
+  const dropdownContent = (
+    <div style={{ padding: '10px', 
+               width: '130px', 
+               backgroundColor: "white",  
+               border: '1px solid #d9d9d9',
+               boxSizing: 'border-box',
+               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+               borderRadius: '8px',
+               whiteSpace: 'normal',
+      wordWrap: 'break-word',
+      overflow: 'hidden' }}>
+      {/* Ergebnisse pro Antwort Section */}
+      <div>
+        <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>Ergebnisse pro Antwort</div>
+        <Radio.Group defaultValue={reference} style={{ display: 'block', paddingLeft: 10, maxHeight: '150px', overflowY: 'scroll' }} onChange={(e)=>setReference(e.target.value)}>
+          <Radio value={10}>10</Radio>
+          <Radio value={20}>20</Radio>
+          <Radio value={30}>30</Radio>
+          <Radio value={40}>40</Radio>
+          <Radio value={50}>50</Radio>
+        </Radio.Group>
+      </div>
+
+      <Divider style={{ margin: '10px 0', height: '2px', backgroundColor: '#b0b0b0' }} />
+
+      {/* Erscheinungsjahr Section */}
+      <div>
+        <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>Erscheinungsjahr</div>
+        <Radio.Group defaultValue={selectedYear} style={{ display: 'block', paddingLeft: 10, maxHeight: '100px', overflowY: 'scroll' }} onChange={(e)=>setSelectedYear(e.target.value)}>
+        {years.map((year, index) => (
+            <Radio key={index} value={year}>
+              {year}
+            </Radio>
+        ))} 
+        </Radio.Group>
+      </div>
+
+      <Divider style={{ margin: '10px 0', height: '2px', backgroundColor: '#b0b0b0' }} />
+
+      {/* Gericht Section */}
+      <div>
+        <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>Gericht</div>
+        <Radio.Group defaultValue={selectedCourt} style={{ display: 'block', paddingLeft: 10, maxHeight: '150px', overflowY: 'scroll' }}  onChange={(e)=>setSelectedCourt(e.target.value)}>
+        <Radio value="All" className="mb-4">All</Radio>
+        {courtTypes.map((group, index) => (
+            <div key={index} style={{ marginBottom: index < courtTypes.length - 1 ? '15px' : '0' }}>
+              {group.map((court, idx) => (
+                <Radio key={idx} value={court} style={{ display: 'block'}}>
+                  {court}
+                </Radio>
+              ))}
+            </div>
+          ))}
+        </Radio.Group>
+      </div>
+    </div>
+  );
    
+  console.log(reference,selectedCourt,selectedYear,"lll")
     return (
       <div className="relative">
-        <Dropdown menu={{ items }} placement="bottom">
+        <Dropdown dropdownRender={()=>dropdownContent} placement="bottom" trigger={['click']}>
         <button
           onClick={()=>{}}
           className="size-9 flex justify-center items-center hover:bg-main/10 rounded-lg"

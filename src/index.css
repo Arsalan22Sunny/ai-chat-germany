@@ -107,3 +107,16 @@
 .primary-button:hover{
     background: rgb(25 34 77) !important;
 }
+.dropdown-radio-btn{
+    display: 'block';
+    padding-left: 10;
+    max-height: '150px';
+    overflow-y: 'scroll';
+}
+.dropdown-header{
+    font-weight: 'bold';
+    margin-bottom: '5px'; 
+}
+.divider{
+    margin: '10px 0' ;
+}

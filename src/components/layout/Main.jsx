@@ -6,7 +6,7 @@ const LayoutMain = () => {
   return (
     <>
       <Navbar className="shrink-0"/>
-      <div className="flex-grow overflow-hidden h-full">
+      <div className="flex-grow overflow-scroll h-full">
         <Outlet />
       </div>
       <Footer className="shrink-0"/>

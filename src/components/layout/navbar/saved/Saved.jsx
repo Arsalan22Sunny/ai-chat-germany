@@ -69,36 +69,36 @@ function Dropdowns({ toggle = () => {} }) {
               {Array.isArray(saved) && saved.length > 0 ? (
                 <table
                   className="w-full table-fixed"
-                  style={{ tableLayout: "fixed" }}
+                  style={{ tableLayout: "fixed !important" }}
                 >
                   <thead className="fixed w-fit left-0 xl:left-auto 2xl:left-auto">
                     <tr>
-                      <th className="text-start w-3/6 bg-slate-100 p-3">
+                      <th className="text-start w-1/2	 bg-slate-100 p-3">
                        <SearchForm/>
                       </th>
-                      <th className="text-start w-1.5/6 bg-slate-100 p-3">
+                      <th className="text-start w-3/12 bg-slate-100 p-3">
                         Kommentare
                       </th>
                       <th className="text-start w-1/6 bg-slate-100 p-3">
                         Datum der Speicherung
                       </th>
-                      <th className="text-start w-0.5/6 bg-slate-100 p-3">
+                      <th className="text-start w-1/12 bg-slate-100 p-3">
                         Aktion
                       </th>
                     </tr>
                   </thead>
                   <tbody className="flex !flex-col w-full " style={{marginTop: "74px"}}>
                     {saved.map((item, index) => (
-                      <tr key={index} className="w-full">
-                        <td className="py-4 w-3/6">
+                      <tr key={index}>
+                        <td className="py-4 w-1/2	">
                           <div className="bg-slate-100 p-3 rounded-lg space-y-2 w-full">
                             <h5 className="font-semibold">{item.filename}</h5>
                             <p>{item.text}</p>
                           </div>
                         </td>
-                        <td className="p-3 w-1.5/6">{item.notes}</td>
-                        <td className="p-3 w-1/6">{item.created_at}</td>
-                        <td className="p-3 w-0.5/6 text-center">
+                        <td className="p-3 w-3/12"><div className="w-full">{item.notes}</div></td>
+                        <td className="p-3 w-1/6 text-start">{item.created_at}</td>
+                        <td className="p-3 w-1/12	text-center">
                           <button
                             type="button"
                             className="p-1 rounded-lg text-red-800"
