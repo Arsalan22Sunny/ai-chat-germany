@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import FetchContext from "../../../../context/fetch";
 import CloserButton from "../../../common/CloseButton";
 import Loading from "../../../common/Loading";
-import IconBookmark from "../../../icon/IconBookmark";
 import { createPortal } from "react-dom";
 import SearchForm from "../../../ui/chat/expand/SearchForm";
 
@@ -52,26 +51,27 @@ function Dropdowns({ toggle = () => {} }) {
       .catch(console.error);
   }
   useEffect(fetch_pdfs, [requests]);
+  useEffect(()=>{
+    saved?.sort((a, b) => b.created_at - a.created_at);
+  },[saved])
   return (
     <div className="fixed left-0 top-0 inset-0 w-screen h-[100svh] z-[11] bg-white overflow-hidden py-4">
-      <div className="h-full flex items-center justify-center overflow-y-auto">
+      <div className="h-full flex justify-center overflow-y-auto">
         {saved ? (
-          <div className="p-4 bg-white max-h-[100%] space-y-4 max-w-screen-xl mx-auto">
-            <div className="relative">
-            <div className="flex fixed items-center justify-between bg-white z-60 h-16 top-0 py-8">
+          <div className="p-4 bg-white w-full max-h-[100%] space-y-4 max-w-screen-xl mx-auto">
+            <div className="flex fixed items-center w-full justify-between max-w-screen-xl bg-white z-60 h-16 top-0 py-8 px-2 left-0 xl:left-auto xl:right-auto 2xl:left-auto 2xl:right-auto xl:pr-9 xl:pl-0 2xl:pr-9 2xl:pl-0">
               <h2 className="text-2xl lg:text-3xl font-bold">
                 Gespeicherte Entscheidungen
               </h2>
               <CloserButton doCollapse={toggle} />
             </div>
-            </div>
             <div className="overflow-x-auto !mt-8">
               {Array.isArray(saved) && saved.length > 0 ? (
                 <table
-                  className="w-full overflow-x-auto"
-                  style={{ tableLayout: "auto" }}
+                  className="w-full table-fixed"
+                  style={{ tableLayout: "fixed" }}
                 >
-                  <thead className="fixed w-fit">
+                  <thead className="fixed w-fit left-0 xl:left-auto 2xl:left-auto">
                     <tr>
                       <th className="text-start w-3/6 bg-slate-100 p-3">
                        <SearchForm/>
@@ -87,18 +87,18 @@ function Dropdowns({ toggle = () => {} }) {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="flex !flex-col" style={{marginTop: "74px"}}>
+                  <tbody className="flex !flex-col w-full " style={{marginTop: "74px"}}>
                     {saved.map((item, index) => (
-                      <tr key={index}>
+                      <tr key={index} className="w-full">
                         <td className="py-4 w-3/6">
-                          <div className="bg-slate-100 p-3 rounded-lg space-y-2">
+                          <div className="bg-slate-100 p-3 rounded-lg space-y-2 w-full">
                             <h5 className="font-semibold">{item.filename}</h5>
                             <p>{item.text}</p>
                           </div>
                         </td>
-                        <td className="p-3 w-1.5/6">notes</td>
-                        <td className="p-3 w-1/6">N/A</td>
-                        <td className="p-3 w-0.5/6">
+                        <td className="p-3 w-1.5/6">{item.notes}</td>
+                        <td className="p-3 w-1/6">{item.created_at}</td>
+                        <td className="p-3 w-0.5/6 text-center">
                           <button
                             type="button"
                             className="p-1 rounded-lg text-red-800"

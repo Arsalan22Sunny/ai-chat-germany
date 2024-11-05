@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState} from "react";
 import IconBookmark from "../../../../icon/IconBookmark";
 import cn from "../../../../../utils/cn";
 import FetchContext from "../../../../../context/fetch";
-import { ArchiveAdd } from "iconsax-react";
+import { ArchiveAdd, AddCircle } from "iconsax-react";
+import { Tooltip } from 'antd';
 
-const SaveChat = ({ content, handleSavedDocuments, ...rest }) => {
+const SaveChat = ({ content, handleSavedDocuments, handleAddNoteModal, ...rest }) => {
   const [saved, setSaved] = useState(false);
   const { requests } = useContext(FetchContext);
   const [bookmarked, setBookmarked] = useState(false);
@@ -50,6 +51,17 @@ const SaveChat = ({ content, handleSavedDocuments, ...rest }) => {
   }
   
   return (
+   
+    <div className="flex items-center">
+    {savedDocuments.includes(documentId) || bookmarked ? 
+        <Tooltip placement="top" title={<span className="text-black">Add note</span>} color="white" >
+         <div className="pr-2" onClick={()=>handleAddNoteModal(documentId)}>
+           <AddCircle size="16" color="#192245"/>
+         </div>
+        </Tooltip>
+           :
+           <></>
+    }
     <button
       type="button"
       onClick={onClick}
@@ -62,6 +74,7 @@ const SaveChat = ({ content, handleSavedDocuments, ...rest }) => {
       {savedDocuments.includes(documentId) || bookmarked ? <ArchiveAdd size="24" color="#192245" variant="Bold"/> :<IconBookmark className={"w-full h-full"} />}
       {saved ? <small className="px-2">Gespeichert</small> : ""}
     </button>
+    </div>
   );
 };
 

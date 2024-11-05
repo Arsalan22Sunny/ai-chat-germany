@@ -5,8 +5,11 @@ import PropTypes from "prop-types";
 import cn from "../../../../../utils/cn";
 import ViewerContext from "../../../../../context/viewer";
 import SaveChat from "./SaveChat";
+import { Modal } from 'antd';
+import { Input } from 'antd';
+const { TextArea } = Input;
 
-const Source = ({ source, onClick, handleSavedDocuments}) => {
+const Source = ({ source, onClick, handleSavedDocuments, handleAddNoteModal}) => {
   const [visited, setVisited] = useState(false);
   const { PDF} = useContext(ViewerContext);
 
@@ -42,7 +45,7 @@ const Source = ({ source, onClick, handleSavedDocuments}) => {
             {source.content?.filename.replace(".pdf", "")}
           </div>
         </button>
-        <SaveChat content={source} handleSavedDocuments={handleSavedDocuments}/>
+        <SaveChat content={source} handleSavedDocuments={handleSavedDocuments} handleAddNoteModal={handleAddNoteModal}/>
       </div>
       <div
         className="bg-white px-2 lg:px-3 py-1 lg:py-2 overflow-hidden"
@@ -61,7 +64,7 @@ Source.propTypes = {
   onClick: PropTypes.func,
 };
 
-const SourceList = ({ sources, handleSavedDocuments}) => {
+const SourceList = ({ sources, handleSavedDocuments, handleAddNoteModal}) => {
   if (!Array.isArray(sources)) return;
   const { PDF, viewPDF } = useContext(ViewerContext);
 
@@ -75,6 +78,8 @@ const SourceList = ({ sources, handleSavedDocuments}) => {
           viewPDF(source.content);
         }}
         handleSavedDocuments={handleSavedDocuments}
+        handleAddNoteModal={handleAddNoteModal}
+
       />
     );
   });

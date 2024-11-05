@@ -8,6 +8,8 @@ import { useContext, useEffect, useState } from "react";
 import FetchContext from "../../../../../context/fetch";
 import { ContextChat } from "../../../../../context/chat";
 import { Tooltip } from 'antd';
+import { Modal,Input, Button } from "antd";
+const {TextArea}=Input
 
 const StickyButton = ({ toggle }) => {
   const text= "Zuklappen"
@@ -63,6 +65,9 @@ const BubbleAi = ({ className, question, expanded, toggle, handleSavedDocuments 
   const [stream, setStream] = useState("");
   const [sources, setSources] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false)
+  const [note, setNote] = useState("")
+  const [documentId,setDocumentId] = useState('')
 
   useEffect(() => {
     if (!question) return;
@@ -131,16 +136,54 @@ const BubbleAi = ({ className, question, expanded, toggle, handleSavedDocuments 
 
   if (!stream) return;
 
+  const handleAddNoteModal=(document_id)=>{
+    setShowModal(true)
+    setDocumentId(document_id)
+  }
+
+  const addNote=async()=>{
+   const data={
+    document_id: documentId,
+    notes: note
+   }
+   console.log(data,"data")
+   const accessToken = localStorage.getItem("accessToken");  
+   console.log(accessToken,"token") 
+    try {
+      const response = await fetch(`https://back.sanbjur.de/api/save-chat`, {
+        method: "PUT",
+        headers: { 'Authorization': `Bearer ${accessToken}`,"Content-Type": "application/json",},
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save note");
+      }
+      setNote('')
+      setShowModal(false)
+    } catch (error) {
+      console.error("Error fetching sources:", error);
+    }
+  }
+
   return (
     <section
       className={cn("flex justify-start relative items-start", className)}
     >
+      <Modal title="Add Note" 
+             open={showModal} 
+             centered
+             onCancel={()=>setShowModal(false)} 
+             footer={<Button type="primary" className="primary-button" onClick={addNote}>Submit</Button>}
+      >
+      <TextArea rows={4} placeholder="Add Note...." onChange={(e)=>setNote(e.target.value)}/>
+      </Modal>
       <div className="max-w-[90%] overflow-hidden">
         <main className="bg-slate-200 text-black rounded-xl p-2 sm:p-3 relative transition-all">
           <p>{stream}</p>
           {expanded && (
             <ul className="divide-y divide-gray-300 space-y-4">
-              <SourceList sources={arrayValidator(sources)} handleSavedDocuments={handleSavedDocuments}/>
+              <SourceList sources={arrayValidator(sources)} handleSavedDocuments={handleSavedDocuments} handleAddNoteModal={handleAddNoteModal}/>
             </ul>
           )}
         </main>

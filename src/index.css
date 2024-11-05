@@ -94,4 +94,16 @@
        cursor: pointer;
        transition: box-shadow 0.3s ease;
        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-     }
+}
+.primary-button{
+    background: rgb(25 34 77);
+}
+.primary-button:active{
+    background: rgb(25 34 77) !important;
+}
+.primary-button:focus{
+    background: rgb(25 34 77) !important;
+}
+.primary-button:hover{
+    background: rgb(25 34 77) !important;
+}
