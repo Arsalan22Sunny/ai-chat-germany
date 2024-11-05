@@ -1,7 +1,7 @@
 import { useState } from "react";
 import IconBookmark from "../../../icon/IconBookmark";
 import { Setting2 } from "iconsax-react";
-import { Dropdown, Menu, Radio, Button, Divider } from 'antd';
+import { Dropdown, Radio, Button, Divider } from 'antd';
 
 const Settings = () => {
 
@@ -11,6 +11,7 @@ const Settings = () => {
   const [reference, setReference] = useState(10)
   const [selectedYear, setSelectedYear] = useState('All')
   const [selectedCourt, setSelectedCourt] = useState('All')
+  const [open,setOpen] = useState(false)
 
   const courtTypes = [
       ["AG", "LG", "OLG", "BGH"],
@@ -78,15 +79,19 @@ const Settings = () => {
           ))}
         </Radio.Group>
       </div>
-    </div>
+
+      <div className="flex justify-end">
+        <Button type="primary" className="primary-button mt-3" onClick={()=>setOpen(false)}>Ok</Button>
+      </div>
+    </div> 
   );
    
   console.log(reference,selectedCourt,selectedYear,"lll")
     return (
       <div className="relative">
-        <Dropdown dropdownRender={()=>dropdownContent} placement="bottom" trigger={['click']}>
+        <Dropdown dropdownRender={()=>dropdownContent} open={open} placement="bottom" trigger={['click']}>
         <button
-          onClick={()=>{}}
+          onClick={()=>{setOpen(true)}}
           className="size-9 flex justify-center items-center hover:bg-main/10 rounded-lg"
           title={"Gespeicherte \n Entscheidungen"}
         >

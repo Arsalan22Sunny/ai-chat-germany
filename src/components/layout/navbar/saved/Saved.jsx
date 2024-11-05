@@ -90,7 +90,7 @@ function Dropdowns({ toggle = () => {} }) {
                   <tbody className="flex !flex-col w-full " style={{marginTop: "74px"}}>
                     {saved.map((item, index) => (
                       <tr key={index}>
-                        <td className="py-4 w-1/2	">
+                        <td className="py-4 w-1/2">
                           <div className="bg-slate-100 p-3 rounded-lg space-y-2 w-full">
                             <h5 className="font-semibold">{item.filename}</h5>
                             <p>{item.text}</p>
