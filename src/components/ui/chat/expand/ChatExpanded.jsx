@@ -50,7 +50,13 @@ const ChatExpanded = ({ pdf, hidePDFViewer }) => {
   function fetchAssign() {
     if (!pdf.filename) return;
     setLoading(true);
-    requests(`pdf_content/${encodeURIComponent(pdf.filename)}`)
+    requests(`pdf_content/`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({file_name: pdf.filename})
+    })
       .then((res) => res.json())
       .then((data) => {
         if (!data) return;
