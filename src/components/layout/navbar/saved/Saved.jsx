@@ -40,6 +40,7 @@ const NavLink = ({ item = PDFObject }) => {
 function Dropdowns({ toggle = () => {} }) {
   const [saved, setSaved] = useState(null);
   const { requests } = useContext(FetchContext);
+  const [searchQuery,setSearchQuery] = useState("")
 
   function fetch_pdfs() {
     requests("get-pdfs")
@@ -51,9 +52,42 @@ function Dropdowns({ toggle = () => {} }) {
       .catch(console.error);
   }
   useEffect(fetch_pdfs, [requests]);
-  useEffect(()=>{
-    saved?.sort((a, b) => b.created_at - a.created_at);
-  },[saved])
+
+  const sortArray=(data)=>{
+    data?.sort((a,b)=> new Date(b.created_at) - new Date(a.created_at))
+    return data;
+  }
+
+  const handleSearch=(value)=>{
+    setSearchQuery(value)
+  }
+
+  const handleSearchSubmit = async(e) => {
+    e.preventDefault();
+    const data={
+      search_term: searchQuery
+    }
+    const accessToken = localStorage.getItem("accessToken");  
+    try {
+      const response = await fetch(`https://back.sanbjur.de/api/search-pdf`, {
+        method: "POST",
+        headers: { 'Authorization': `Bearer ${accessToken}`,"Content-Type": "application/json",},
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save note");
+      }
+      const savedPdfList = await response.json();
+      console.log(savedPdfList,"response")
+      setSaved(savedPdfList)
+      setSearchQuery("")
+
+    } catch (error) {
+      console.error("Error fetching sources:", error);
+    }
+  };
+  
   return (
     <div className="fixed left-0 top-0 inset-0 w-screen h-[100svh] z-[11] bg-white overflow-hidden py-4">
       <div className="h-full flex justify-center overflow-y-auto">
@@ -74,7 +108,7 @@ function Dropdowns({ toggle = () => {} }) {
                   <thead className="fixed w-fit left-0 xl:left-auto 2xl:left-auto">
                     <tr>
                       <th className="text-start w-1/2	 bg-slate-100 p-3">
-                       <SearchForm/>
+                       <SearchForm onSearch={handleSearch} handleSearchSubmit={handleSearchSubmit}/>
                       </th>
                       <th className="text-start w-3/12 bg-slate-100 p-3">
                         Kommentare
@@ -88,7 +122,7 @@ function Dropdowns({ toggle = () => {} }) {
                     </tr>
                   </thead>
                   <tbody className="flex !flex-col w-full " style={{marginTop: "74px"}}>
-                    {saved.map((item, index) => (
+                    {sortArray(saved)?.map((item, index) => (
                       <tr key={index}>
                         <td className="py-4 w-1/2">
                           <div className="bg-slate-100 p-3 rounded-lg space-y-2 w-full">

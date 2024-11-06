@@ -24,6 +24,30 @@ const Settings = () => {
       ["BDG"]
     ];
 
+  const handleFilter=async()=>{
+
+    const data={
+      year: selectedYear.toString(),
+      court: selectedCourt,
+      sources:[reference.toString()]
+     }
+     const accessToken = localStorage.getItem("accessToken");  
+      try {
+        const response = await fetch(`https://back.sanbjur.de/api/filters`, {
+          method: "POST",
+          headers: { 'Authorization': `Bearer ${accessToken}`,"Content-Type": "application/json",},
+          body: JSON.stringify(data),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Action Failed");
+        }
+        setOpen(false)
+      } catch (error) {
+        console.error("Error fetching sources:", error);
+      }
+  }
+
   const dropdownContent = (
     <div style={{ padding: '10px', 
                width: '130px', 
@@ -81,7 +105,7 @@ const Settings = () => {
       </div>
 
       <div className="flex justify-end">
-        <Button type="primary" className="primary-button mt-3" onClick={()=>setOpen(false)}>Ok</Button>
+        <Button type="primary" className="primary-button mt-3" onClick={handleFilter}>Ok</Button>
       </div>
     </div> 
   );

@@ -146,9 +146,7 @@ const BubbleAi = ({ className, question, expanded, toggle, handleSavedDocuments 
     document_id: documentId,
     notes: note
    }
-   console.log(data,"data")
    const accessToken = localStorage.getItem("accessToken");  
-   console.log(accessToken,"token") 
     try {
       const response = await fetch(`https://back.sanbjur.de/api/save-chat`, {
         method: "PUT",

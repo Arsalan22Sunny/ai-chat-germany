@@ -96,7 +96,6 @@ const ChatMain = () => {
   const [savedDocuments,setSavedDocuments]=useState([])
   const handleSavedDocuments=(document_id)=>{
     if(!savedDocuments.includes(document_id)){
-    console.log(document_id,"docid")
     setSavedDocuments([...savedDocuments,document_id])
     }
 }

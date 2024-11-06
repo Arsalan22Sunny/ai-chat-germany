@@ -2,18 +2,13 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { SearchNormal1 } from "iconsax-react";
 
-const SearchForm = ({ onSearch }) => {
+const SearchForm = ({ onSearch, handleSearchSubmit }) => {
   const [query, setQuery] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(query); // called in 2 place
-  };
 
   return (
     <form
       className="rounded-full border overflow-hidden w-full flex-grow max-w-md flex items-center bg-white"
-      onSubmit={handleSubmit}
+      onSubmit={handleSearchSubmit}
     >
       <input
         type="search"
@@ -26,7 +21,7 @@ const SearchForm = ({ onSearch }) => {
         }}
         placeholder="Dokument durchsuchen..."
       />
-      <button type="submit" className="py-2 px-3"><SearchNormal1 size="16" color="rgb(25 34 77)"/></button>
+      <button type="submit" className="py-2 px-3" ><SearchNormal1 size="16" color="rgb(25 34 77)"/></button>
     </form>
   );
 };
